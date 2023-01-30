@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="css/main1.css">
+    <link rel="stylesheet" href="css/form.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+
+        <div id="logo">
+            <h1><span class="highlight">N</span>P</h1>
+        </div>
+
+        <nav>
+            <ul class="topnav" id="myTopnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact me</a></li>
+                <li>
+                    <a href="javascript:void(0);" class="icon" onclick="headerNav()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main id="article1-main">
+
+        <h2 class="main-heading main-article-title">UI/UX Design using Figma</h2>
+
+        <div class="main-article-container">
+            <div class="main-article-left-container">
+
+                <p class="main-article-description">
+                    But I must explain to you how all this mistaken idea of denouncing 
+                    pleasure and praising pain was born and I will give you a complete 
+                    account of the system, and expound the actual teachings of the great 
+                    explorer of the truth, the master-builder of human happiness. No one 
+                    rejects, dislikes, or avoids pleasure itself, because it is pleasure, 
+                    but because those who do not know how to pursue pleasure rationally 
+                    encounter consequences that are extremely painful. Nor again is there 
+                    anyone who loves or pursues or desires to obtain pain of itself, 
+                    because it is pain, but because occasionally circumstances occur in which 
+                    toil and pain can procure him some great pleasure. To take a trivial example, 
+                    which of us ever undertakes laborious physical exercise, except to obtain 
+                    some advantage from it? 
+
+                    But I must explain to you how all this mistaken idea of denouncing 
+                    pleasure and praising pain was born and I will give you a complete 
+                    account of the system, and expound the actual teachings of the great 
+                    explorer of the truth, the master-builder of human happiness. No one 
+                    rejects, dislikes, or avoids pleasure itself, because it is pleasure, 
+                    but because those who do not know how to pursue pleasure rationally 
+                    encounter consequences that are extremely painful. Nor again is there 
+                    anyone who loves or pursues or desires to obtain pain of itself, 
+                    because it is pain, but because occasionally circumstances occur in which 
+                    toil and pain can procure him some great pleasure. To take a trivial example, 
+                    which of us ever undertakes laborious physical exercise, except to obtain 
+                    some advantage from it? 
+
+                    But I must explain to you how all this mistaken idea of denouncing 
+                    pleasure and praising pain was born and I will give you a complete 
+                    account of the system, and expound the actual teachings of the great 
+                    explorer of the truth, the master-builder of human happiness. No one 
+                    rejects, dislikes, or avoids pleasure itself, because it is pleasure, 
+                    but because those who do not know how to pursue pleasure rationally 
+                    encounter consequences that are extremely painful. Nor again is there 
+                    anyone who loves or pursues or desires to obtain pain of itself, 
+                    because it is pain, but because occasionally circumstances occur in which 
+                    toil and pain can procure him some great pleasure. To take a trivial example, 
+                    which of us ever undertakes laborious physical exercise, except to obtain 
+                    some advantage from it? 
+                </p>
+
+                <p class="main-article-date-container">Posted on: <span class="article-date"></span></p>
+    
+            </div>
+
+            <div class="main-article-right-container">
+
+                <div class="main-article-image-container">
+                    <img src="img/figma.png" alt="" class="main-article-image">
+                </div>
+
+                <div class="main-article-services-container">
+
+                    <h4>Comments & Reactions</h4>
+
+                    <ul id="main-article-comments-container">
+                        
+                    </ul>
+
+                    <!-- <div>
+
+                        <div class="comment-container">
+                            <p class="user-name">Nshuti</p>
+                            <p class="user-comment">Insightful article!</p>
+                        </div>
+
+                        <div class="comment-container">
+                            <p class="user-name">Parfait</p>
+                            <p class="user-comment">Test Comment 1</p>
+                        </div>
+
+                        <div class="comment-container">
+                            <p class="user-name">Ruberwa</p>
+                            <p class="user-comment">Test Comment 2</p>
+                        </div>
+
+                        <div class="comment-container">
+                            <p class="user-name">Bahati</p>
+                            <p class="user-comment">Test Comment 3</p>
+                        </div>
+
+                        <div class="comment-container">
+                            <p class="user-name">Alex</p>
+                            <p class="user-comment">Test Comment 4</p>
+                        </div>
+
+                    </div> -->
+
+                    <div id="main-article-buttons-container">
+                        <button class="main-article-button" onclick="likeButton()">Like</button>
+                        <button class="main-article-button" onclick="openCommentForm()">Add comment</button>
+                    </div>
+                    
+                    <div class="wrapper" id="comment-form-container">
+
+                        <form action="" id="comment-form">
+
+                            <!-- <p>New comment</p> -->
+
+                            <div class="field">
+                                <label for="comment"><b>New Comment:</b></label>
+                                <textarea name="comment" id="comment-message" placeholder="Add your comment here..." cols="15" rows="5" required></textarea>
+                            </div>
+
+                        
+                            <div id="comment-form-buttons-container">
+                                <button type="submit" class="btn">Add</button>
+                                <button type="button" class="btn cancel" onclick="closeCommentForm()">Close</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="scripts/index.js"></script>
+
+</body>
+</html>
