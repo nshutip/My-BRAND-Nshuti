@@ -1,67 +1,4 @@
-// const form = document.getElementById("login-form");
-// emailField = form.querySelector(".email");
-// emailInput = emailField.querySelector("input");
-// passwordField = form.querySelector(".password");
-// passwordInput = passwordField.querySelector("input");
-
-
-// form.onsubmit = (e) => {
-//   e.preventDefault(); //preventing from form submitting
-//   //if email and password is blank then add shake class in it else call specified function
-//   (emailInput.value == "") ? emailField.classList.add("shake", "error") : checkEmail();
-//   (passwordInput.value == "") ? passwordField.classList.add("shake", "error") : checkPass();
-
-
-//   setTimeout(()=>{ //remove shake class after 500ms
-//     emailField.classList.remove("shake");
-//     passwordField.classList.remove("shake");
-//   }, 500);
-
-
-//   emailInput.onkeyup = ()=>{checkEmail();} //calling checkEmail function on email input keyup
-//   passwordInput.onkeyup = ()=>{checkPass();} //calling checkPassword function on pass input keyup
-
-
-//   emailValidation( () => {
-//     let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/; //pattern for validate email
-//     if(!emailInput.value.match(pattern)){ //if pattern not matched then add error and remove valid class
-//       emailField.classList.add("error");
-//       emailField.classList.remove("valid");
-//       let errorTxt = emailField.querySelector(".error-txt");
-//       //if email value is not empty then show please enter valid email else show Email can't be blank
-//       (eInput.value != "") ? errorTxt.innerText = "Enter a valid email address" : errorTxt.innerText = "Email can't be blank";
-//     }else{ //if pattern matched then remove error and add valid class
-//       emailField.classList.remove("error");
-//       emailField.classList.add("valid");
-//     }
-//   })
-
-
-//   PasswordValidation(() => {
-//     if(passwordInput.value == ""){ //if pass is empty then add error and remove valid class
-//       passwordField.classList.add("error");
-//       passwordField.classList.remove("valid");
-//     }else{ //if pass is empty then remove error and add valid class
-//       passwordField.classList.remove("error");
-//       passwordField.classList.add("valid");
-//     }
-//   })
-
-
-//   //if eField and pField doesn't contains error class that mean user filled details properly
-//   if(!emailField.classList.contains("error") && !passwordField.classList.contains("error")){
-//     window.location.href = form.getAttribute("action"); //redirecting user to the specified url which is inside action attribute of form tag
-//     login(() => {
-//       var checkEmail = localStorage.getItem("email");
-//       var checkPassword = localStorage.getItem("password");
-//       if (checkEmail === user2.value && checkPassword === pass2.value) {
-//         alert('Login successful');
-//       } else {
-//         alert('Login fail! Invalid Login details.');
-//       }
-//     })
-//   }
-// };
+const server = ''
 
 // Header Nav
 function headerNav() {
@@ -275,24 +212,27 @@ if (form1) {
 const storedQuerries = JSON.parse(localStorage.getItem("querries"));
 const list = document.getElementById("querries-container")
 
-storedQuerries.forEach( querry => {
-  const querryContainer = document.createElement("li");
-  querryContainer.className += "container querry-container grid-item";
-
-  const topSection = document.createElement("div");
-  topSection.className += "querry-top-section";
-  topSection.innerHTML = `<h3 class="querry-name">${querry.name}</h3>`;
-  querryContainer.appendChild(topSection);
+if(storedQuerries) {
+  storedQuerries.forEach( querry => {
+    const querryContainer = document.createElement("li");
+    querryContainer.className += "container querry-container grid-item";
   
-  const lowerSection = document.createElement("div");
-  lowerSection.className += "querry-lower-section";
-  lowerSection.innerHTML = `<p class="querry-message">${querry.message}</p>`;
-  querryContainer.appendChild(lowerSection);
+    const topSection = document.createElement("div");
+    topSection.className += "querry-top-section";
+    topSection.innerHTML = `<h3 class="querry-name">${querry.name}</h3>`;
+    querryContainer.appendChild(topSection);
+    
+    const lowerSection = document.createElement("div");
+    lowerSection.className += "querry-lower-section";
+    lowerSection.innerHTML = `<p class="querry-message">${querry.message}</p>`;
+    querryContainer.appendChild(lowerSection);
+  
+    if (list) {
+      list.appendChild(querryContainer);
+    }
+  });
+}
 
-  if (list) {
-    list.appendChild(querryContainer);
-  }
-});
 
 // function displayQuerries(storedQuerries) {
 //   for (let i = 0; i < storedQuerries.length; i++){
@@ -339,10 +279,10 @@ if (form3) {
     }
 
     // image validation
-    if (image === "") {
-      alert("Image is required.");
-      isValid = false;
-    }
+    // if (image === "") {
+    //   alert("Image is required.");
+    //   isValid = false;
+    // }
 
     // content validation
     if (content === "") {
@@ -353,7 +293,7 @@ if (form3) {
     // if validation is successful
     if (isValid) {
 
-      const stored = JSON.parse(localStorage.getItem("articles"));
+      // const stored = JSON.parse(localStorage.getItem("articles"));
       const currentUser = JSON.parse(sessionStorage.getItem("current-user"));
 
       const article = {

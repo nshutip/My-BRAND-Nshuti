@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 ::selection{
   color: #fff;
   background: #3853bf;
@@ -133,20 +130,20 @@ form input[type="submit"]:hover{
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
-float: left;
-width: 50%;
+  float: left;
+  width: 50%;
 }
 
 /* Add padding to container elements */
 .container {
-padding: 16px;
+  padding: 16px;
 }
 
 /* Clear floats */
 .clearfix::after {
-content: "";
-clear: both;
-display: table;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 /* Change styles for cancel button and signup button on extra small screens */

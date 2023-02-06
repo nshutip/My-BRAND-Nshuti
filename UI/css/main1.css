@@ -522,6 +522,21 @@ svg {
     width: 50%;
 }
 
+/* Admin Sign-in page styling */
+
+#admin-sign-in-main {
+    background-color: #1762A7;
+    
+}
+
+#admin-sign-in-container {
+    justify-content: center;
+}
+
+#admin-login-form {
+
+}
+
 /* Footer Styling */
 
 footer {
