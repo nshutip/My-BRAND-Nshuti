@@ -28,7 +28,7 @@
     </header>
 
     <main>
-        <form action="" id="registration-form">
+        <form action="./adminLogin.html" id="registration-form">
             <div class="wrapper">
 
                 <h4>Sign up for a new account here</h4>
@@ -36,8 +36,13 @@
                 <hr>
 
                 <div class="field name">
-                    <label for="name"><b>Full name</b></label>
-                    <input type="text" placeholder="Enter your full name" name="new-name" id="new-name" required>
+                    <label for="fname"><b>First name</b></label>
+                    <input type="text" placeholder="Enter your first name" name="fname" id="first-name" required>
+                </div>
+
+                <div class="field name">
+                    <label for="lname"><b>Last name</b></label>
+                    <input type="text" placeholder="Enter your last name" name="lname" id="last-name" required>
                 </div>
         
                 <div class="field email">
@@ -58,6 +63,8 @@
                 </div>
         </form>
     </main>
-    <script src="scripts/index.js"></script>
+
+    <script src="scripts/admin.js"></script>
+
 </body>
 </html>
