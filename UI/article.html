@@ -13,7 +13,7 @@
 
     <title>Document</title>
 </head>
-<body>
+<body onload="openArticle()">
 
     <header>
 
@@ -27,6 +27,7 @@
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact me</a></li>
+                <li><a href="clientLogin.html">Log In</a></li>
                 <li>
                     <a href="javascript:void(0);" class="icon" onclick="headerNav()">
                         <i class="fa fa-bars"></i>
@@ -39,53 +40,16 @@
 
     <main id="article1-main">
 
-        <h2 class="main-heading main-article-title">UI/UX Design using Figma</h2>
+        <h2 class="main-heading main-article-title" id="main-article-title"></h2>
 
         <div class="main-article-container">
             <div class="main-article-left-container">
 
-                <p class="main-article-description">
-                    But I must explain to you how all this mistaken idea of denouncing 
-                    pleasure and praising pain was born and I will give you a complete 
-                    account of the system, and expound the actual teachings of the great 
-                    explorer of the truth, the master-builder of human happiness. No one 
-                    rejects, dislikes, or avoids pleasure itself, because it is pleasure, 
-                    but because those who do not know how to pursue pleasure rationally 
-                    encounter consequences that are extremely painful. Nor again is there 
-                    anyone who loves or pursues or desires to obtain pain of itself, 
-                    because it is pain, but because occasionally circumstances occur in which 
-                    toil and pain can procure him some great pleasure. To take a trivial example, 
-                    which of us ever undertakes laborious physical exercise, except to obtain 
-                    some advantage from it? 
+                <p class="main-article-description" id="main-article-content">
 
-                    But I must explain to you how all this mistaken idea of denouncing 
-                    pleasure and praising pain was born and I will give you a complete 
-                    account of the system, and expound the actual teachings of the great 
-                    explorer of the truth, the master-builder of human happiness. No one 
-                    rejects, dislikes, or avoids pleasure itself, because it is pleasure, 
-                    but because those who do not know how to pursue pleasure rationally 
-                    encounter consequences that are extremely painful. Nor again is there 
-                    anyone who loves or pursues or desires to obtain pain of itself, 
-                    because it is pain, but because occasionally circumstances occur in which 
-                    toil and pain can procure him some great pleasure. To take a trivial example, 
-                    which of us ever undertakes laborious physical exercise, except to obtain 
-                    some advantage from it? 
-
-                    But I must explain to you how all this mistaken idea of denouncing 
-                    pleasure and praising pain was born and I will give you a complete 
-                    account of the system, and expound the actual teachings of the great 
-                    explorer of the truth, the master-builder of human happiness. No one 
-                    rejects, dislikes, or avoids pleasure itself, because it is pleasure, 
-                    but because those who do not know how to pursue pleasure rationally 
-                    encounter consequences that are extremely painful. Nor again is there 
-                    anyone who loves or pursues or desires to obtain pain of itself, 
-                    because it is pain, but because occasionally circumstances occur in which 
-                    toil and pain can procure him some great pleasure. To take a trivial example, 
-                    which of us ever undertakes laborious physical exercise, except to obtain 
-                    some advantage from it? 
                 </p>
 
-                <p class="main-article-date-container">Posted on: <span class="article-date"></span></p>
+                <p class="main-article-date-container">Posted by: <span id="main-article-author"></span></p>
     
             </div>
 
@@ -98,6 +62,11 @@
                 <div class="main-article-services-container">
 
                     <h4>Comments & Reactions</h4>
+
+                    <div class="alert info">
+                        <span class="closebtn">&times;</span>  
+                        <strong>Info!</strong> You need to <a href="clientLogin.html">log in</a> first.
+                    </div>
 
                     <ul id="main-article-comments-container">
                         
@@ -139,12 +108,10 @@
                     
                     <div class="wrapper" id="comment-form-container">
 
-                        <form action="" id="comment-form">
-
-                            <!-- <p>New comment</p> -->
+                        <form action="article.html" id="comment-form">
 
                             <div class="field">
-                                <label for="comment"><b>New Comment:</b></label>
+                                <label for="comment"><b>New Comment</b></label>
                                 <textarea name="comment" id="comment-message" placeholder="Add your comment here..." cols="15" rows="5" required></textarea>
                             </div>
 
@@ -167,7 +134,7 @@
 
     </main>
 
-    <script src="scripts/index.js"></script>
+    <script src="scripts/article.js"></script>
 
 </body>
 </html>

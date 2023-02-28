@@ -102,7 +102,7 @@ async function getArticles () {
       storedArticles = data
   })
   .catch(error => {
-      console.error('Error adding new admin:', error);
+      console.log(error)
   });
 
   console.log(storedArticles)
@@ -113,7 +113,11 @@ async function getArticles () {
     storedArticles.forEach( article => {
       const articleContainer = document.createElement("li");
       articleContainer.className += "card article-card grid-item";
-      articleContainer.setAttribute("onclick", "location.href = 'article1.html'")
+      const articleId = article._id
+      const url = `window.location.href = article.html?id=${articleId}`
+      articleContainer.setAttribute("onclick", url)
+      articleContainer.setAttribute("id", article._id)
+      console.log(articleId)
     
       const descriptionSection = document.createElement("div");
       descriptionSection.className += "card-details-container";
@@ -132,7 +136,7 @@ async function getArticles () {
       
       const lowerSection = document.createElement("a");
       lowerSection.className += "card-link external-link";
-      lowerSection.setAttribute("href", "article1.html");
+      lowerSection.setAttribute("href", `article.html?id=${articleId}`);
       lowerSection.innerHTML = `
           <p>
             Read more
@@ -148,4 +152,196 @@ async function getArticles () {
       }
     });
   }
+}
+
+async function readMore (articleId) {
+  const articleContainer = document.getElementById("article-container");
+  const articleTitle = document.getElementById("main-article-title");
+  const articleContent = document.getElementById("main-article-content");
+  const articleLinks = document.querySelectorAll("#articles a");
+
+  window.location.href = "./article1.html";
+  console.log(articleId)
+  let article
+  await fetch(apiServer + `articles/${articleId}`,{
+    method: "GET",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error('Network response was not ok.');
+  })
+  .then(data => {
+      console.log(data);
+      // article = data
+  })
+  .catch(error => {
+      console.error('Error adding new admin:', error);
+  });
+}
+
+async function openArticle (){
+  const urlParams = new URLSearchParams(window.location.search);
+  const articleId = urlParams.get("id");
+
+  console.log(articleId)
+
+  const articleContainer = document.getElementById("article-container");
+  const articleTitle = document.getElementById("main-article-title");
+  const articleContent = document.getElementById("main-article-content");
+  const articleAuthor = document.getElementById("main-article-author");
+  const commentsList = document.getElementById("main-article-comments-container")
+  
+
+  let article
+
+  await fetch(apiServer + `articles/${articleId}`,{
+    method: "GET",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error('Network response was not ok.');
+  })
+  .then(data => {
+      console.log(data);
+      article = data
+  })
+  .catch(error => {
+      console.error('Error adding new admin:', error);
+  });
+
+  if (article) {
+    articleTitle.textContent = article.title;
+    articleContent.textContent = article.content;
+    articleAuthor.textContent = article.authorId
+
+    const storedComments = article.comments
+
+    console.log(storedComments)
+
+    if (storedComments) {
+      storedComments.forEach( comment => {
+        const commentContainer = document.createElement("li");
+        commentContainer.className += "comment-container";
+        const commentId = comment._id
+        commentContainer.setAttribute("id", comment._id)
+
+        console.log(commentId)
+      
+        const commentSection = document.createElement("div");
+        commentSection.className += "comment-details-container";
+        commentSection.innerHTML = `
+          <p class="user-name">${comment.userId}</p>
+          <p class="user-comment">${comment.comment}</p>
+        `;
+        commentContainer.appendChild(commentSection);
+      
+        if (commentsList) {
+          commentsList.appendChild(commentContainer);
+        }
+      });
+    }
+
+    const close = document.getElementsByClassName("closebtn");
+
+    for (let i = 0; i < close.length; i++) {
+      close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+  }
+  // const article = articles.find(a => a.id === articleId);
+  // if (article) {
+  //   displayArticle(article);
+  // }
+}
+
+function openCommentForm() {
+
+  const currentUserToken = localStorage.getItem("x-access-token");
+
+  if (!currentUserToken) {
+    return document.querySelector(".alert").style.display = "block";
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const articleId = urlParams.get("id");
+
+  console.log(articleId)
+
+  document.getElementById("comment-form-container").style.display = "block";
+  document.getElementById("main-article-comments-container").style.display = "none";
+  document.getElementById("main-article-buttons-container").style.display = "none";
+
+  let commentForm = document.getElementById("comment-form");
+
+  if (commentForm) {
+    commentForm.addEventListener("submit", async (event) => {
+      event.preventDefault(); // prevent form submission
+
+      // get input elements
+
+      const comment = document.getElementById("comment-message").value;
+
+      console.log(comment)
+
+      // validation flag
+      const isValid = true;
+
+      // content validation
+      if (comment === "") {
+        // alert("content is required.");
+        isValid = false;
+      }
+
+      // if validation is successful
+      if (isValid) {
+
+        let commentAdded;
+
+        await fetch(apiServer + `articles/${articleId}/comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : JSON.parse(currentUserToken)
+          },
+          body: JSON.stringify(comment)
+        })
+        .then(response => {
+          if (response.ok) {
+              return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          console.log('message:', data);
+          commentAdded = true;
+        })
+        .catch(error => {
+            console.error('Error adding new article:', error);
+        });
+
+        if(commentAdded) {
+            window.location.href = commentForm.getAttribute("action");
+        }
+      }
+    });
+  }
+}
+
+function closeCommentForm() {
+  document.getElementById("comment-form-container").style.display = "none";
+  document.getElementById("main-article-comments-container").style.display = "block";
+  document.getElementById("main-article-buttons-container").style.display = "block";
 }

@@ -390,7 +390,7 @@ if (storedArticles) {
     descriptionSection.className += "card-details-container";
     descriptionSection.innerHTML = `
       <h3 class="card-title">${article.title}</h3>
-      <p class="card-description">${article.content}</p>
+      <p class="card-description" style="background-color: white,overflow: scroll">${article.content}</p>
     `;
     articleContainer.appendChild(descriptionSection);
 
